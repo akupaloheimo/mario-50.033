@@ -1731,6 +1731,7 @@ MonoBehaviour:
   enemies: {fileID: 860325876}
   gameOverCanvas: {fileID: 1390436815}
   gameOverScoreText: {fileID: 65093376}
+  marioAnimator: {fileID: 496703130}
   maxSpeed: 5
   upSpeed: 30
   jumpOverGoomba: {fileID: 496703129}
