@@ -21,9 +21,9 @@ public class BrickMovement : MonoBehaviour
             if (boxOn)
             {
                 coinAnimator.Play("bounceQ");
+                coinAudio.PlayOneShot(coin);
             }
             boxOn = false;
-            coinAudio.PlayOneShot(coin);
         }
     }
 }
