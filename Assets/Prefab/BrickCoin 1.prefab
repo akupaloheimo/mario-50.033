@@ -195,10 +195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickAnimator: {fileID: 7885323282181555728}
-  coinAnimator: {fileID: 710723753905559949}
-  coinAudio: {fileID: 5850807316736554585}
+  coinAnimator: {fileID: 0}
+  coinAudio: {fileID: 0}
   coin: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
-  hasCoin: 1
+  boxOn: 1
 --- !u!82 &5850807316736554585
 AudioSource:
   m_ObjectHideFlags: 0
@@ -206,11 +206,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375177111150807852}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 1542755559849068190, guid: f5f1e77148cb1234eaa1a59a6018b869, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 7751919106007184068}
   - component: {fileID: 710723753905559949}
   - component: {fileID: 173856443898026369}
+  - component: {fileID: 2056929600652716982}
   m_Layer: 7
   m_Name: Coin
   m_TagString: Untagged
@@ -447,6 +448,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.9113195}
   m_EdgeRadius: 0
+--- !u!114 &2056929600652716982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791836532224218986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77593361903d7db4ba4b3cfd0af2331d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameter: 0
+  useInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManagerWeek3, Assembly-CSharp
+        m_MethodName: IncreaseScore
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6624672065229266862
 GameObject:
   m_ObjectHideFlags: 0

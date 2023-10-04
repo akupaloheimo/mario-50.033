@@ -61,16 +61,16 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""point"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""522f3c6b-277d-483a-8174-7b675ac2ed03"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""fire"",
@@ -100,7 +100,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""keyboard"",
+                    ""groups"": ""SuperMarioBros"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -111,7 +111,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""keyboard"",
+                    ""groups"": ""SuperMarioBros"",
                     ""action"": ""move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -122,7 +122,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""keyboard"",
+                    ""groups"": ""SuperMarioBros"",
                     ""action"": ""jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -133,7 +133,7 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""keyboard"",
+                    ""groups"": ""SuperMarioBros"",
                     ""action"": ""jumpHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -141,24 +141,46 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""13cbba54-a2f5-427e-b3f0-6e9fd915ab92"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""SuperMarioBros"",
                     ""action"": ""click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""02ffa97f-c420-4779-bfbe-c8f271aaf624"",
-                    ""path"": """",
+                    ""name"": ""One Modifier"",
+                    ""id"": ""1ba9ab82-64b5-4197-8b0c-93cf242a1e58"",
+                    ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""point"",
-                    ""isComposite"": false,
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""3f7a5843-d497-4c08-9fdc-f3f8e156c326"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SuperMarioBros"",
+                    ""action"": ""point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""00319163-5bc4-4eef-a57d-d8b1ebf987c4"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SuperMarioBros"",
+                    ""action"": ""point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -176,11 +198,16 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""keyboard"",
-            ""bindingGroup"": ""keyboard"",
+            ""name"": ""SuperMarioBros"",
+            ""bindingGroup"": ""SuperMarioBros"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -339,13 +366,13 @@ public partial class @MarioActions: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @gameplay => new GameplayActions(this);
-    private int m_keyboardSchemeIndex = -1;
-    public InputControlScheme keyboardScheme
+    private int m_SuperMarioBrosSchemeIndex = -1;
+    public InputControlScheme SuperMarioBrosScheme
     {
         get
         {
-            if (m_keyboardSchemeIndex == -1) m_keyboardSchemeIndex = asset.FindControlSchemeIndex("keyboard");
-            return asset.controlSchemes[m_keyboardSchemeIndex];
+            if (m_SuperMarioBrosSchemeIndex == -1) m_SuperMarioBrosSchemeIndex = asset.FindControlSchemeIndex("SuperMarioBros");
+            return asset.controlSchemes[m_SuperMarioBrosSchemeIndex];
         }
     }
     public interface IGameplayActions

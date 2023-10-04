@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class BrickMovement : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class BrickMovement : MonoBehaviour
                 coinAudio.PlayOneShot(coin);
             }
             boxOn = false;
+            coinAudio.PlayOneShot(coinAudio.clip);
         }
     }
 }

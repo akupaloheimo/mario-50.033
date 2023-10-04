@@ -243,9 +243,9 @@ AudioSource:
   m_GameObject: {fileID: 4450702913691851856}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 1542755559849068190, guid: f5f1e77148cb1234eaa1a59a6018b869, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 6f487163c53194893952b1f457060b86, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 2807324749532858222}
   - component: {fileID: 6294393784890139902}
   - component: {fileID: 2819063110711725714}
+  - component: {fileID: 4575656444808096261}
   m_Layer: 7
   m_Name: CoinQ
   m_TagString: Untagged
@@ -526,3 +527,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.875}
   m_EdgeRadius: 0
+--- !u!114 &4575656444808096261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6010414887578382066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77593361903d7db4ba4b3cfd0af2331d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameter: 0
+  useInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManagerWeek3, Assembly-CSharp
+        m_MethodName: IncreaseScore
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

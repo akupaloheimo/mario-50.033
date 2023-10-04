@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,18 +8,26 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10;
+    public float maxSpeed = 20;
+    public float upSpeed = 10;
+    public GameObject enemies;
+    public GameManagerWeek3 gameManager;
+    public float deathImpulse;
+    public Transform gameCamera;
+    public Animator marioAnimator;
+    public AudioSource marioAudio;
+    public AudioSource marioDeathAudio;
     private Rigidbody2D marioBody;
     // global variables
     private SpriteRenderer marioSprite;
     private bool faceRightState = true;
     int collisionLayerMask = (1 << 3) | (1 << 6) | (1 << 7);
-    public TextMeshProUGUI scoreText;
-    public GameObject enemies;
-    public GameObject gameOverCanvas;
-    public TextMeshProUGUI gameOverScoreText;
-    public Animator marioAnimator;
-    public float deathImpulse;
-    public Transform gameCamera;
+    //public GameObject gameOverCanvas;
+    //public TextMeshProUGUI gameOverScoreText;
+    private bool onGroundState = true;
+    private bool jumpedState = false;
+    private bool moving = false;
+
 
     // state
     [System.NonSerialized]
@@ -26,14 +35,14 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameOverCanvas.SetActive(false);
+        //gameOverCanvas.SetActive(false);
         marioSprite = GetComponent<SpriteRenderer>();
         // Set to be 30 FPS
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
         marioAnimator.SetBool("onGround", onGroundState);
     }
-    private bool moving = false;
+
     // FixedUpdate may be called once per frame. See documentation for details.
     void FixedUpdate()
     {
@@ -64,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             Move(value);
         }
     }
-    private bool jumpedState = false;
+
 
     public void Jump()
     {
@@ -89,9 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-    public float maxSpeed = 20;
-    public float upSpeed = 10;
-    private bool onGroundState = true;
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (((collisionLayerMask & (1 << col.transform.gameObject.layer)) > 0) & !onGroundState)
@@ -105,13 +112,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && alive && onGroundState)
         {
             Debug.Log("Collided with goomba!");
 
             // play death animation
             marioAnimator.Play("mario-die");
-            marioAudio.PlayOneShot(marioDeath);
+            marioDeathAudio.PlayOneShot(marioDeathAudio.clip);
             alive = false;
         }
 
@@ -145,29 +152,19 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Restart!");
         // reset everything
-        ResetGame();
+        GameRestart();
         // resume time
         Time.timeScale = 1.0f;
     }
-    public JumpOverGoomba jumpOverGoomba;
-    private void ResetGame()
+
+    public void GameRestart()
     {
         // reset position
         marioBody.transform.position = new Vector3(-0.66f, 1.77f, 0.0f);
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
-        // reset score
-        scoreText.text = "Score: 0";
-        // reset Goomba
-        foreach (Transform eachChild in enemies.transform)
-        {
-            eachChild.transform.localPosition = eachChild.GetComponent<EnemyMovement>().startPosition;
-        }
-        // reset score
-        jumpOverGoomba.score = 0;
-        // reset game over screen
-        gameOverCanvas.SetActive(false);
+
         // reset animation
         marioAnimator.SetTrigger("gameRestart");
         alive = true;
@@ -176,15 +173,11 @@ public class PlayerMovement : MonoBehaviour
         gameCamera.position = new Vector3(5.81f, 6.5f, -10);
     }
 
-    public AudioSource marioAudio;
-
     void PlayJumpSound()
     {
         // play jump sound
         marioAudio.PlayOneShot(marioAudio.clip);
     }
-
-    public AudioClip marioDeath;
 
     void PlayDeathImpulse()
     {
@@ -196,9 +189,11 @@ public class PlayerMovement : MonoBehaviour
         //stop time
         Time.timeScale = 0.0f;
         // Game Over Screen
-        gameOverCanvas.SetActive(true);
-        gameOverScoreText.text = "Score: " + jumpOverGoomba.score.ToString();
+        //gameOverCanvas.SetActive(true);
+        //gameOverScoreText.text = "Score: " + jumpOverGoomba.score.ToString();
+        gameManager.GameOver();
     }
+
 
 
 

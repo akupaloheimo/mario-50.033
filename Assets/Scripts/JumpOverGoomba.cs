@@ -5,8 +5,8 @@ using TMPro;
 
 public class JumpOverGoomba : MonoBehaviour
 {
+    GameManagerWeek3 gameManager;
     public Transform enemyLocation;
-    public TextMeshProUGUI scoreText;
     private bool onGroundState;
 
     [System.NonSerialized]
@@ -16,10 +16,11 @@ public class JumpOverGoomba : MonoBehaviour
     public Vector3 boxSize;
     public float maxDistance;
     public LayerMask layerMask;
+    public Animator goombaAnimator;
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManagerWeek3>();
     }
 
     // Update is called once per frame
@@ -35,7 +36,6 @@ public class JumpOverGoomba : MonoBehaviour
         if (Input.GetKeyDown("space") && onGroundCheck())
         {
             onGroundState = false;
-            countScoreState = true;
         }
 
         // when jumping, and Goomba is near Mario and we haven't registered our score
@@ -43,10 +43,11 @@ public class JumpOverGoomba : MonoBehaviour
         {
             if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
             {
+                countScoreState = true;
+            }
+            else
+            {
                 countScoreState = false;
-                score++;
-                scoreText.text = "Score: " + score.ToString();
-                Debug.Log(score);
             }
         }
     }
@@ -54,6 +55,14 @@ public class JumpOverGoomba : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground")) onGroundState = true;
+        if (!onGroundState && countScoreState)
+        {
+            if (col.gameObject.CompareTag("Player"))
+            {
+                gameManager.IncreaseScore(1);
+                goombaAnimator.Play("stomp");
+            }
+        }
     }
 
 
