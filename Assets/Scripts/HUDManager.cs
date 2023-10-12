@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class HUDManager : MonoBehaviour
+public class HUDManager : Singleton<HUDManager>
 {
     private Vector3[] scoreTextPosition = {
         new Vector3(-695, 477, 0),

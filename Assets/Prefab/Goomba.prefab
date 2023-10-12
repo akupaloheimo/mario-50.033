@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goombaAnimator: {fileID: 5362430138065953840}
   gameManager: {fileID: 0}
-  startPosition: {x: -5, y: -3.75, z: 0}
+  startPosition: {x: 2, y: -3.75, z: 0}
   enemyLocation: {fileID: 0}
 --- !u!95 &5362430138065953840
 Animator:

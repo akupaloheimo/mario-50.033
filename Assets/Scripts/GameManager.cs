@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManagerWeek3 : MonoBehaviour
+public class GameManagerWeek3 : Singleton<GameManagerWeek3>
 {
     // events
     public UnityEvent gameStart;
     public UnityEvent gameRestart;
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
-
     private int score = 0;
-
     void Start()
     {
         gameStart.Invoke();

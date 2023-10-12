@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     public float speed = 10;
     public float maxSpeed = 20;
@@ -41,6 +42,16 @@ public class PlayerMovement : MonoBehaviour
         Application.targetFrameRate = 30;
         marioBody = GetComponent<Rigidbody2D>();
         marioAnimator.SetBool("onGround", onGroundState);
+        // subscribe to scene manager scene change
+        SceneManager.activeSceneChanged += SetStartingPosition;
+    }
+    public void SetStartingPosition(Scene current, Scene next)
+    {
+        if (next.name == "World-1-2")
+        {
+            // change the position accordingly in your World-1-2 case
+            this.transform.position = new Vector3(-1.52884f, -4.60072f, 0.0f);
+        }
     }
 
     // FixedUpdate may be called once per frame. See documentation for details.
@@ -193,7 +204,6 @@ public class PlayerMovement : MonoBehaviour
         //gameOverScoreText.text = "Score: " + jumpOverGoomba.score.ToString();
         gameManager.GameOver();
     }
-
 
 
 

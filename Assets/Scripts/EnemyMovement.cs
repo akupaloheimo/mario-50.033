@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
         originalX = transform.position.x;
         ComputeVelocity();
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManagerWeek3>();
-
+        enemyLocation = GameObject.FindGameObjectWithTag("Player").transform;
     }
     void ComputeVelocity()
     {

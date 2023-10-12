@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickAnimator: {fileID: 7885323282181555728}
-  coinAnimator: {fileID: 0}
-  coinAudio: {fileID: 0}
+  coinAnimator: {fileID: 710723753905559949}
+  coinAudio: {fileID: 5850807316736554585}
   coin: {fileID: 8300000, guid: d885ffc842af744d89f7d595ffcc176a, type: 3}
   boxOn: 1
 --- !u!82 &5850807316736554585
